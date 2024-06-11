@@ -90,7 +90,7 @@ public sealed class BinaryReader
         {
             SeekOrigin.Begin => offset,
             SeekOrigin.Current => Position + offset,
-            SeekOrigin.End => _buffer.Length - offset - 1,
+            SeekOrigin.End => _buffer.Length - offset,
             _ => throw new ArgumentOutOfRangeException(nameof(origin)),
         };
 }
