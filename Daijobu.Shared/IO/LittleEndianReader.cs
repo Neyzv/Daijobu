@@ -3,10 +3,10 @@ using System.Buffers.Binary;
 using System.Runtime.InteropServices;
 using System.Text;
 
-namespace Daijobu.Shared.IO.Binary;
+namespace Daijobu.Shared.IO;
 
-public sealed class BinaryReader
-    : IReader
+public sealed class LittleEndianReader
+    : IBinaryReader
 {
     private readonly ReadOnlyMemory<byte> _buffer;
 
@@ -18,13 +18,13 @@ public sealed class BinaryReader
     public int BytesAvailable =>
         Length - Position;
 
-    public BinaryReader(ReadOnlyMemory<byte> buffer) =>
+    public LittleEndianReader(ReadOnlyMemory<byte> buffer) =>
         _buffer = buffer;
 
-    public BinaryReader(ReadOnlySequence<byte> buffer) =>
+    public LittleEndianReader(ReadOnlySequence<byte> buffer) =>
         _buffer = SequenceMarshal.TryGetReadOnlyMemory(buffer, out var memory) ? memory : buffer.ToArray();
     
-    public BinaryReader(Stream stream)
+    public LittleEndianReader(Stream stream)
     {
         if (stream is not MemoryStream ms)
         {

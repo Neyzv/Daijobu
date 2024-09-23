@@ -2,5 +2,5 @@
 
 internal interface IClient
 {
-    
+    Task ConnectAsync(string ip, int port);
 }

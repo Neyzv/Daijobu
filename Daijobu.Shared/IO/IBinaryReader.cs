@@ -1,6 +1,6 @@
 ﻿namespace Daijobu.Shared.IO;
 
-public interface IReader
+public interface IBinaryReader
 {
     int Length { get; }
 
